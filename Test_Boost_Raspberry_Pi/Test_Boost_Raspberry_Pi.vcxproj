@@ -48,8 +48,7 @@
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Link>
-      <LibraryDependencies>
-      </LibraryDependencies>
+      <LibraryDependencies>boost_thread;boost_system;pthread;fmt;%(LibraryDependencies)</LibraryDependencies>
     </Link>
     <RemotePostBuildEvent>
       <Command>gpio export 17 out</Command>
@@ -58,8 +57,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <Link>
-      <LibraryDependencies>
-      </LibraryDependencies>
+      <LibraryDependencies>boost_thread;boost_system;pthread;fmt;%(LibraryDependencies)</LibraryDependencies>
     </Link>
     <RemotePostBuildEvent>
       <Command>gpio export 17 out</Command>

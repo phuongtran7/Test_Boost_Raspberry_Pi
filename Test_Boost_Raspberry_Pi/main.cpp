@@ -1,24 +1,13 @@
-#include <wiringPi.h>
-
-// LED Pin - wiringPi pin 0 is BCM_GPIO 17.
-// we have to use BCM numbering when initializing with wiringPiSetupSys
-// when choosing a different pin number please use the BCM numbering, also
-// update the Property Pages - Build Events - Remote Post-Build Event command 
-// which uses gpio export for setup for wiringPiSetupSys
-#define	LED	17
+#include "SocketHelper.h"
 
 int main(void)
 {
-	wiringPiSetupSys();
+	// Start client to get data from socket
+	auto client_ = std::make_unique<SocketHelper>(9605);
 
-	pinMode(LED, OUTPUT);
-
-	while (true)
-	{
-		digitalWrite(LED, HIGH);  // On
-		delay(500); // ms
-		digitalWrite(LED, LOW);	  // Off
-		delay(500);
+	while (1) {
+		fmt::print("Received value: {}.\n", client_->Get_AoA());
+		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	return 0;
 }
