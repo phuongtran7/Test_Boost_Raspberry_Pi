@@ -7,6 +7,7 @@ This is a simple project that use Boost Asio and {fmt} on Raspberry Pi 3B+ (Bust
 
 1. Boost Asio: `sudo apt install libboost-all-dev` (version used: 1.67.0.1).
 2. {fmt}: `sudo apt install libfmt-dev'` (version used: 5.2.1+ds-2).
+3. Flexbuffers: Download and build Flatbuffers on the Pi itself as the package is not yet available on Buster (version used: 1.11.0).
 
 ### On development machine (Windows)
 
