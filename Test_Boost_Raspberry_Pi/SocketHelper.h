@@ -5,6 +5,7 @@
 #include "fmt/format.h"
 #include <thread>
 #include <mutex>
+#include "flatbuffers/flexbuffers.h"
 
 using boost::asio::ip::udp;
 
@@ -77,9 +78,8 @@ private:
 		{
 			std::scoped_lock lock(mutex_);
 			//fmt::print("Received: {} bytes.\n", bytes_recvd);
-			InData tempData;
-			memcpy(&tempData, data_, bytes_recvd);
-			angle_of_attack_ = tempData.AoA;
+			const auto recieved = flexbuffers::GetRoot(data_, bytes_recvd).AsFloat();
+			angle_of_attack_ = recieved;
 			StartReceive();
 		}
 		else {
